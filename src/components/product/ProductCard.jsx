@@ -1,4 +1,12 @@
+import { useDispatch } from "react-redux"
+import { addToCart } from "../../store/cartSlice"
+
 function ProductCard({ product }) {
+    const dispatch = useDispatch()
+    const addToCartHelper = (product) => {
+        dispatch(addToCart(product))
+    }
+
     return (
         <div className="bg-white w-full rounded-lg shadow-md p-4 hover:shadow-lg transition">
             <img
@@ -21,7 +29,8 @@ function ProductCard({ product }) {
                 <span className="text-sm text-gray-500 line-through ml-2">{product.originalPrice}</span>
             </div>
 
-            <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-sm font-medium py-2 rounded">
+            <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-sm font-medium py-2 rounded"
+                onClick={() => addToCartHelper(product)}>
                 Add to Cart
             </button>
         </div>
